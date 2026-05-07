@@ -188,15 +188,7 @@ var LEADS = {};
 STATIONS.forEach(function(s){
   LEADS[s] = (s === "Learn about Orthodoxy") ? ["Fr Paul","Fr Augustine","Haidy Youssef",""] : ["",""];
 });
-var entries = [
-  {name:"Mary Hanna",    station:"Learn about Orthodoxy", day:"Fri May 15", slot:"5:00-7:00 pm"},
-  {name:"Peter Aziz",    station:"Learn about Orthodoxy", day:"Fri May 15", slot:"5:00-7:00 pm"},
-  {name:"Sara Nabil",    station:"Learn about Orthodoxy", day:"Fri May 15", slot:"7:00-9:00 pm"},
-  {name:"John Saad",     station:"BBQ booth",             day:"Fri May 15", slot:"5:00-7:00 pm"},
-  {name:"Mina Fares",    station:"BBQ booth",             day:"Fri May 15", slot:"5:00-7:00 pm"},
-  {name:"Nadia Bishara", station:"BBQ booth",             day:"Fri May 15", slot:"5:00-7:00 pm"},
-  {name:"George Elia",   station:"Shawarma",              day:"Fri May 15", slot:"5:00-7:00 pm"}
-];
+var entries = [];
 
 // ── STATE ─────────────────────────────────────────────
 var dayOpen    = [true, false, false];
