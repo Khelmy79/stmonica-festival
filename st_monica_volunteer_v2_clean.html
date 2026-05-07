@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>St. Monica Festival 2026 — Volunteer Sign-Up</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',sans-serif;background:#FDF8F2;padding:0;}
+.hero{background:#7B1E2E;padding:14px 16px 10px;}
+.hero h1{color:#fff;font-size:17px;font-weight:700;letter-spacing:0.02em;}
+.hero p{color:#C4A882;font-size:11px;margin-top:3px;}
+.hero-dates{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.hero-date{background:rgba(255,255,255,0.15);color:#F0D080;font-size:10px;padding:3px 10px;border-radius:99px;}
+.nav{display:flex;background:#fff;border-bottom:2px solid #E8DDD0;}
+.nav-btn{flex:1;padding:11px 4px;font-size:11px;font-weight:600;border:none;background:none;cursor:pointer;color:#9A8080;text-transform:uppercase;letter-spacing:0.05em;border-bottom:2px solid transparent;margin-bottom:-2px;}
+.nav-btn.active{color:#7B1E2E;border-bottom-color:#C4943A;}
+.content{padding:12px;}
+.hint{font-size:12px;color:#9A8080;margin-bottom:10px;}
+.legend{display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
+.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:#9A8080;}
+.leg-dot{width:8px;height:8px;border-radius:50%;}
+.day-block{background:#fff;border:1px solid #E8DDD0;border-radius:10px;margin-bottom:8px;overflow:hidden;}
+.day-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;cursor:pointer;}
+.day-hdr:hover{background:#faf6f0;}
+.day-title{font-weight:700;color:#7B1E2E;font-size:14px;}
+.day-sub{font-size:11px;color:#9A8080;margin-top:2px;}
+.day-arrow{color:#C4943A;font-size:13px;}
+.day-body{border-top:1px solid #E8DDD0;}
+.srow{border-bottom:1px solid #E8DDD0;padding:10px 14px;}
+.srow:last-child{border-bottom:none;}
+.srow-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
+.sname{font-weight:600;font-size:13px;color:#2A1A1A;flex:1;}
+.sright{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.badge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;white-space:nowrap;}
+.badge-red{background:#FDEDEC;color:#C0392B;}
+.badge-amber{background:#FEF9E7;color:#B8860B;}
+.badge-green{background:#E8F5EE;color:#2E7D5E;}
+.su-btn{padding:5px 12px;background:#7B1E2E;border:none;border-radius:99px;color:#fff;font-size:10px;font-weight:600;cursor:pointer;}
+.su-btn:hover{background:#C4943A;}
+.su-btn.open{background:#C4943A;}
+.slead{font-size:10px;color:#9A8080;margin-bottom:6px;}
+.slots-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px;}
+.stag{display:flex;flex-direction:column;align-items:center;padding:5px 9px;border-radius:8px;border:1px solid #ccc;min-width:80px;cursor:pointer;}
+.stag:hover{opacity:0.85;}
+.stag-green{background:#E8F5EE;border-color:#2E7D5E;}
+.stag-red{background:#FDEDEC;border-color:#C0392B;}
+.stag-time{font-size:10px;font-weight:500;}
+.stag-green .stag-time{color:#2E7D5E;}
+.stag-red .stag-time{color:#C0392B;}
+.stag-cnt{font-size:11px;font-weight:700;margin-top:1px;}
+.stag-green .stag-cnt{color:#2E7D5E;}
+.stag-red .stag-cnt{color:#C0392B;}
+.names-popup{background:#fff;border:1.5px solid #C4943A;border-radius:8px;padding:10px 12px;margin-top:6px;}
+.names-popup-title{font-size:11px;font-weight:700;color:#7B1E2E;margin-bottom:6px;}
+.vol-name-item{font-size:12px;padding:3px 0;border-bottom:0.5px solid #E8DDD0;color:#2A1A1A;}
+.vol-name-item:last-child{border-bottom:none;}
+.no-names{font-size:12px;color:#9A8080;font-style:italic;}
+.names-close{margin-top:8px;font-size:11px;color:#9A8080;cursor:pointer;text-decoration:underline;}
+.panel{border:1.5px solid #7B1E2E;border-radius:10px;margin-top:10px;overflow:hidden;}
+.panel-hdr{background:#7B1E2E;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;}
+.panel-title{color:#fff;font-weight:700;font-size:12px;}
+.panel-x{background:none;border:none;color:rgba(255,255,255,0.7);font-size:16px;cursor:pointer;}
+.panel-body{padding:12px 14px;}
+.step-lbl{font-size:10px;font-weight:700;color:#9A8080;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;}
+.slot-opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1.5px solid #E8DDD0;border-radius:8px;cursor:pointer;margin-bottom:6px;background:#fff;}
+.slot-opt:hover{border-color:#C4943A;}
+.slot-opt.picked{border-color:#7B1E2E;background:#FDF8F2;}
+.slot-radio{width:14px;height:14px;border-radius:50%;border:2px solid #E8DDD0;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.slot-opt.picked .slot-radio{border-color:#7B1E2E;background:#7B1E2E;}
+.slot-radio-dot{width:5px;height:5px;border-radius:50%;background:#fff;}
+.slot-opt-time{font-size:12px;font-weight:500;flex:1;}
+.slot-opt-names{font-size:10px;color:#9A8080;margin-top:2px;}
+.slot-opt-cnt{font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px;}
+.cnt-green{background:#E8F5EE;color:#2E7D5E;}
+.cnt-red{background:#FDEDEC;color:#C0392B;}
+.cnt-amber{background:#FEF9E7;color:#B8860B;}
+.selected-bar{background:#FDF8F2;border-radius:6px;padding:7px 10px;font-size:12px;color:#5A4040;margin-bottom:10px;}
+.fields-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.flabel{display:block;font-size:10px;color:#9A8080;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.05em;}
+.finput{width:100%;padding:8px 10px;border:1px solid #E8DDD0;border-radius:7px;font-size:13px;color:#2A1A1A;outline:none;font-family:inherit;}
+.finput:focus{border-color:#7B1E2E;}
+.form-btns{display:flex;gap:8px;}
+.btn-gold{flex:1;padding:10px;background:#C4943A;border:none;border-radius:7px;color:#fff;font-weight:600;font-size:12px;cursor:pointer;}
+.btn-gold:hover{background:#7B1E2E;}
+.btn-gold:disabled{background:#ccc;cursor:default;}
+.btn-back{padding:10px 14px;background:#fff;border:1px solid #E8DDD0;border-radius:7px;font-size:12px;color:#9A8080;cursor:pointer;}
+.success{background:#E8F5EE;border:1px solid #2E7D5E;border-radius:7px;padding:12px;text-align:center;font-size:13px;color:#2E7D5E;font-weight:600;}
+/* ROSTER */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.stat-card{background:#fff;border:1px solid #E8DDD0;border-radius:8px;padding:10px;text-align:center;}
+.stat-num{font-size:22px;font-weight:700;color:#7B1E2E;}
+.stat-lbl{font-size:10px;color:#9A8080;text-transform:uppercase;letter-spacing:0.04em;margin-top:2px;}
+.rfilter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.rf-btn{padding:4px 10px;border-radius:99px;border:1px solid #E8DDD0;background:#fff;font-size:11px;cursor:pointer;color:#5A4040;}
+.rf-btn.active{background:#7B1E2E;color:#fff;border-color:#7B1E2E;}
+.erow{background:#fff;border:1px solid #E8DDD0;border-radius:8px;padding:9px 12px;margin-bottom:6px;}
+.ename{font-size:13px;font-weight:500;}
+.emeta{font-size:11px;color:#9A8080;margin-top:2px;}
+.etag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:99px;background:#F9F0E8;color:#C4943A;border:0.5px solid #C4A882;margin-top:4px;}
+.empty{text-align:center;padding:2rem;font-size:13px;color:#9A8080;}
+/* ADMIN */
+.pwd-wrap{padding:2rem 1rem;text-align:center;}
+.pwd-wrap h3{color:#7B1E2E;font-size:15px;margin-bottom:4px;}
+.pwd-wrap p{font-size:12px;color:#9A8080;margin-bottom:1rem;}
+.pwd-inp{width:100%;max-width:200px;padding:9px;border:1px solid #E8DDD0;border-radius:8px;font-size:15px;text-align:center;letter-spacing:3px;outline:none;background:#FDF8F2;display:block;margin:0 auto 10px;}
+.pwd-inp:focus{border-color:#7B1E2E;}
+.pwd-go{padding:9px 24px;background:#7B1E2E;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;}
+.pwd-err{font-size:12px;color:#C0392B;margin-top:6px;display:none;}
+.adm-section{background:#fff;border:1px solid #E8DDD0;border-radius:10px;padding:1rem;margin-bottom:10px;}
+.adm-title{font-size:12px;font-weight:700;color:#7B1E2E;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;}
+.adm-row{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:0.5px solid #E8DDD0;flex-wrap:wrap;}
+.adm-row:last-child{border-bottom:none;}
+.adm-sname{font-size:12px;font-weight:500;flex:1;min-width:120px;padding-top:4px;}
+.adm-leads{display:flex;flex-direction:column;gap:4px;}
+.lead-inp{padding:5px 8px;border:1px solid #E8DDD0;border-radius:6px;font-size:11px;width:130px;font-family:inherit;color:#2A1A1A;outline:none;background:#FDF8F2;}
+.lead-inp:focus{border-color:#C4943A;}
+.adm-save{width:100%;padding:10px;background:#7B1E2E;border:none;border-radius:8px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>St. Monica Festival 2026</h1>
+  <p>Volunteer Sign-Up · Costa Mesa</p>
+  <div class="hero-dates">
+    <span class="hero-date">Fri May 15 · 5–9 pm</span>
+    <span class="hero-date">Sat May 16 · 11 am–9 pm</span>
+    <span class="hero-date">Sun May 17 · 11 am–3 pm</span>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="switchNav('signup',this)">Sign Up</button>
+  <button class="nav-btn" onclick="switchNav('roster',this)">Roster</button>
+  <button class="nav-btn" onclick="switchNav('admin',this)">Admin</button>
+</div>
+
+<div class="content">
+  <div id="view-signup">
+    <div class="legend">
+      <div class="leg"><div class="leg-dot" style="background:#C0392B"></div>No volunteers</div>
+      <div class="leg"><div class="leg-dot" style="background:#B8860B"></div>Partial</div>
+      <div class="leg"><div class="leg-dot" style="background:#2E7D5E"></div>Well covered</div>
+    </div>
+    <p class="hint">Tap <strong>Sign Up</strong> next to any station · tap a slot to see who's signed up</p>
+    <div id="accordion"></div>
+  </div>
+  <div id="view-roster" style="display:none">
+    <div class="stats-row" id="stats-row"></div>
+    <div class="rfilter" id="rfilter"></div>
+    <div id="rlist"></div>
+  </div>
+  <div id="view-admin" style="display:none">
+    <div id="adm-pwd">
+      <div class="pwd-wrap">
+        <h3>Coordinator Access</h3>
+        <p>Enter password to manage station leads</p>
+        <input type="password" class="pwd-inp" id="pwd-inp" placeholder="••••••" onkeydown="if(event.key==='Enter')checkPwd()"/>
+        <button class="pwd-go" onclick="checkPwd()">Enter</button>
+        <div class="pwd-err" id="pwd-err">Incorrect password.</div>
+      </div>
+    </div>
+    <div id="adm-panel" style="display:none">
+      <div class="adm-section">
+        <div class="adm-title">Station Leads</div>
+        <div id="adm-leads"></div>
+        <button class="adm-save" onclick="saveLeads()">Save All Leads</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────
+var STATIONS = [
+  "Learn about Orthodoxy","BBQ booth","Kebda booth","Shawarma","Philly steak",
+  "Hamburger, chicken & fries","Coffee & smoothie","Dessert & Crepe",
+  "Jumpers - kids activities","Electronic games - gym","Cash register",
+  "Bazaar & bookstore","Fundraising - T-Shirts & Crafts","Hawawshi","Feteer",
+  "Face painting","Popcorn & Cotton Candy"
+];
+var DAYS = [
+  {label:"Fri May 15", slots:["5:00-7:00 pm","7:00-9:00 pm"]},
+  {label:"Sat May 16", slots:["11:00am-1:00pm","1:00-3:00pm","3:00-5:00pm","5:00-7:00pm","7:00-9:00pm"]},
+  {label:"Sun May 17", slots:["11:00am-1:00pm","1:00-3:00pm"]}
+];
+var LEADS = {};
+STATIONS.forEach(function(s){
+  LEADS[s] = (s === "Learn about Orthodoxy") ? ["Fr Paul","Fr Augustine","Haidy Youssef",""] : ["",""];
+});
+var entries = [];
+
+// ── STATE ─────────────────────────────────────────────
+var dayOpen    = [true, false, false];
+var signupPanel = null; // {si, di, step, pickedSlot}
+var namesPopup  = null; // {si, di, slotIdx}
+var rFilter     = "All";
+var adminOk     = false;
+
+// ── HELPERS ───────────────────────────────────────────
+function countFor(s,d,sl){ return entries.filter(function(e){return e.station===s&&e.day===d&&e.slot===sl;}).length; }
+function namesFor(s,d,sl){ return entries.filter(function(e){return e.station===s&&e.day===d&&e.slot===sl;}).map(function(e){return e.name;}); }
+function totalFor(s,d)   { return entries.filter(function(e){return e.station===s&&e.day===d;}).length; }
+
+function badge(total){
+  if(total===0) return '<span class="badge badge-red">No volunteers</span>';
+  if(total<3)   return '<span class="badge badge-amber">'+total+' signed up</span>';
+  return '<span class="badge badge-green">'+total+' signed up</span>';
+}
+function cntClass(c){ return c===0?"cnt-red":c<3?"cnt-amber":"cnt-green"; }
+
+// ── RENDER ────────────────────────────────────────────
+function render(){
+  var html = "";
+  for(var di=0; di<DAYS.length; di++){
+    var day  = DAYS[di];
+    var open = dayOpen[di];
+    html += '<div class="day-block">';
+    html += '<div class="day-hdr" onclick="toggleDay('+di+')">';
+    html += '<div><div class="day-title">'+day.label+'</div><div class="day-sub">'+day.slots.length+' time slots</div></div>';
+    html += '<span class="day-arrow">'+(open?"▲":"▼")+'</span></div>';
+
+    if(open){
+      html += '<div class="day-body">';
+      for(var si=0; si<STATIONS.length; si++){
+        var s     = STATIONS[si];
+        var total = totalFor(s, day.label);
+        var leads = LEADS[s].filter(function(l){return l.trim();});
+        var leadStr = leads.length ? "Lead: "+leads.join(", ") : "No lead assigned";
+        var isPanel = signupPanel && signupPanel.si===si && signupPanel.di===di;
+
+        html += '<div class="srow">';
+        // Top row
+        html += '<div class="srow-top">';
+        html += '<div class="sname">'+s+'</div>';
+        html += '<div class="sright">'+badge(total);
+        html += '<button class="su-btn'+(isPanel?" open":"")+'" onclick="togglePanel('+si+','+di+')">'+(isPanel?"✕ Close":"Sign Up")+'</button>';
+        html += '</div></div>';
+        // Lead
+        html += '<div class="slead">'+leadStr+'</div>';
+        // Slot tags
+        html += '<div class="slots-row">';
+        for(var sli=0; sli<day.slots.length; sli++){
+          var slot = day.slots[sli];
+          var cnt  = countFor(s, day.label, slot);
+          var cls  = cnt>0 ? "stag stag-green" : "stag stag-red";
+          html += '<div class="'+cls+'" onclick="toggleNames('+si+','+di+','+sli+')">';
+          html += '<span class="stag-time">'+slot+'</span>';
+          html += '<span class="stag-cnt">'+cnt+' signed</span>';
+          html += '</div>';
+        }
+        html += '</div>';
+
+        // Names popup
+        if(namesPopup && namesPopup.si===si && namesPopup.di===di){
+          var pslot = day.slots[namesPopup.slotIdx];
+          var pnames = namesFor(s, day.label, pslot);
+          html += '<div class="names-popup">';
+          html += '<div class="names-popup-title">'+pslot+'</div>';
+          if(pnames.length){
+            pnames.forEach(function(n){ html += '<div class="vol-name-item">• '+n+'</div>'; });
+          } else {
+            html += '<div class="no-names">No one signed up yet — be the first!</div>';
+          }
+          html += '<div class="names-close" onclick="closeNames()">Close</div>';
+          html += '</div>';
+        }
+
+        // Sign-up panel
+        if(isPanel){
+          html += '<div class="panel">';
+          html += '<div class="panel-hdr"><span class="panel-title">✦ '+s+'</span><button class="panel-x" onclick="togglePanel('+si+','+di+')">✕</button></div>';
+          html += '<div class="panel-body">';
+          var step = signupPanel.step;
+
+          if(step==="pick"){
+            html += '<div class="step-lbl">Select your time slot — '+day.label+'</div>';
+            for(var pi=0; pi<day.slots.length; pi++){
+              var psl   = day.slots[pi];
+              var pcnt  = countFor(s, day.label, psl);
+              var pnms  = namesFor(s, day.label, psl);
+              var picked= (signupPanel.pickedSlot===pi);
+              var pnStr = pnms.length ? pnms.join(", ") : "No one signed up yet";
+              html += '<div class="slot-opt'+(picked?" picked":"")+'" onclick="pickSlot('+pi+')">';
+              html += '<div class="slot-radio">'+(picked?'<div class="slot-radio-dot"></div>':'')+'</div>';
+              html += '<div style="flex:1"><div class="slot-opt-time">'+psl+'</div>';
+              html += '<div class="slot-opt-names">'+pnStr+'</div></div>';
+              html += '<span class="slot-opt-cnt '+cntClass(pcnt)+'">'+pcnt+' signed</span>';
+              html += '</div>';
+            }
+            html += '<div class="form-btns" style="margin-top:6px;">';
+            var dis = (signupPanel.pickedSlot===null) ? ' disabled' : '';
+            html += '<button class="btn-gold"'+dis+' onclick="goForm()">Continue →</button>';
+            html += '<button class="btn-back" onclick="togglePanel('+si+','+di+')">Cancel</button>';
+            html += '</div>';
+
+          } else if(step==="form"){
+            var chosenSlot = day.slots[signupPanel.pickedSlot];
+            html += '<div class="selected-bar">'+day.label+' · <strong>'+chosenSlot+'</strong></div>';
+            html += '<div class="fields-row">';
+            html += '<div><label class="flabel">Full Name</label><input id="vol-name" type="text" class="finput" placeholder="Mary Mikhail"/></div>';
+            html += '<div><label class="flabel">Phone</label><input id="vol-phone" type="tel" class="finput" placeholder="(714) 000-0000"/></div>';
+            html += '</div>';
+            html += '<div class="form-btns">';
+            html += '<button class="btn-gold" onclick="submitEntry()">Submit</button>';
+            html += '<button class="btn-back" onclick="goBack()">← Back</button>';
+            html += '</div>';
+
+          } else if(step==="done"){
+            html += '<div class="success">✓ You\'re signed up! Thank you for serving.</div>';
+          }
+          html += '</div></div>';
+        }
+        html += '</div>'; // srow
+      }
+      html += '</div>'; // day-body
+    }
+    html += '</div>'; // day-block
+  }
+  document.getElementById("accordion").innerHTML = html;
+}
+
+// ── ACTIONS ───────────────────────────────────────────
+function toggleDay(di){ dayOpen[di]=!dayOpen[di]; render(); }
+
+function togglePanel(si,di){
+  if(signupPanel && signupPanel.si===si && signupPanel.di===di){
+    signupPanel=null;
+  } else {
+    signupPanel={si:si,di:di,step:"pick",pickedSlot:null};
+    namesPopup=null;
+  }
+  render();
+  setTimeout(function(){ var el=document.querySelector(".panel"); if(el) el.scrollIntoView({behavior:"smooth",block:"nearest"}); },60);
+}
+
+function toggleNames(si,di,sli){
+  if(namesPopup && namesPopup.si===si && namesPopup.di===di && namesPopup.slotIdx===sli){
+    namesPopup=null;
+  } else {
+    namesPopup={si:si,di:di,slotIdx:sli};
+  }
+  render();
+  setTimeout(function(){ var el=document.querySelector(".names-popup"); if(el) el.scrollIntoView({behavior:"smooth",block:"nearest"}); },60);
+}
+
+function closeNames(){ namesPopup=null; render(); }
+
+function pickSlot(pi){ if(signupPanel){ signupPanel.pickedSlot=pi; render(); } }
+
+function goForm(){
+  if(signupPanel && signupPanel.pickedSlot!==null){ signupPanel.step="form"; render();
+    setTimeout(function(){ var el=document.querySelector(".panel"); if(el) el.scrollIntoView({behavior:"smooth",block:"nearest"}); },60);
+  }
+}
+
+function goBack(){ if(signupPanel){ signupPanel.step="pick"; render(); } }
+
+function submitEntry(){
+  var name  = document.getElementById("vol-name").value.trim();
+  var phone = document.getElementById("vol-phone").value.trim();
+  if(!name||!phone){ alert("Please enter your name and phone number."); return; }
+  var day  = DAYS[signupPanel.di];
+  var slot = day.slots[signupPanel.pickedSlot];
+  entries.push({name:name, station:STATIONS[signupPanel.si], day:day.label, slot:slot});
+  signupPanel.step="done"; render();
+  setTimeout(function(){ signupPanel=null; render(); },2500);
+}
+
+// ── NAV ───────────────────────────────────────────────
+function switchNav(view,btn){
+  ["signup","roster","admin"].forEach(function(v){
+    document.getElementById("view-"+v).style.display = (v===view)?"block":"none";
+  });
+  document.querySelectorAll(".nav-btn").forEach(function(b){ b.classList.remove("active"); });
+  btn.classList.add("active");
+  if(view==="roster") renderRoster();
+  if(view==="admin" && adminOk) renderLeads();
+}
+
+// ── ROSTER ────────────────────────────────────────────
+function renderRoster(){
+  var total = entries.length;
+  var sc    = new Set(entries.map(function(e){return e.station;})).size;
+  var dc    = new Set(entries.map(function(e){return e.day;})).size;
+  document.getElementById("stats-row").innerHTML =
+    '<div class="stat-card"><div class="stat-num">'+total+'</div><div class="stat-lbl">Volunteers</div></div>'+
+    '<div class="stat-card"><div class="stat-num">'+sc+'</div><div class="stat-lbl">Stations</div></div>'+
+    '<div class="stat-card"><div class="stat-num">'+dc+'</div><div class="stat-lbl">Days</div></div>';
+  var stns = ["All"].concat(Array.from(new Set(entries.map(function(e){return e.station;}))));
+  document.getElementById("rfilter").innerHTML = stns.map(function(f){
+    return '<button class="rf-btn'+(f===rFilter?" active":"")+'" onclick="setRFilter(\''+f.replace(/'/g,"\\'")+"')\">"+f+'</button>';
+  }).join("");
+  var fil  = (rFilter==="All") ? entries : entries.filter(function(e){return e.station===rFilter;});
+  var list = document.getElementById("rlist");
+  if(!fil.length){ list.innerHTML='<div class="empty">No sign-ups yet.</div>'; return; }
+  list.innerHTML = fil.map(function(e){
+    return '<div class="erow"><div class="ename">'+e.name+'</div><div class="emeta">'+e.day+' · '+e.slot+'</div><div class="etag">'+e.station+'</div></div>';
+  }).join("");
+}
+function setRFilter(f){ rFilter=f; renderRoster(); }
+
+// ── ADMIN ─────────────────────────────────────────────
+function checkPwd(){
+  if(document.getElementById("pwd-inp").value==="stmonica2026"){
+    adminOk=true;
+    document.getElementById("adm-pwd").style.display="none";
+    document.getElementById("adm-panel").style.display="block";
+    renderLeads();
+  } else { document.getElementById("pwd-err").style.display="block"; }
+}
+function renderLeads(){
+  document.getElementById("adm-leads").innerHTML = STATIONS.map(function(s){
+    var max = (s==="Learn about Orthodoxy") ? 4 : 2;
+    var inputs="";
+    for(var i=0;i<max;i++){
+      inputs+='<input class="lead-inp" placeholder="Lead '+(i+1)+'" value="'+((LEADS[s]||[])[i]||"")+'" data-s="'+s+'" data-i="'+i+'"/>';
+    }
+    return '<div class="adm-row"><div class="adm-sname">'+s+'</div><div class="adm-leads">'+inputs+'</div></div>';
+  }).join("");
+}
+function saveLeads(){
+  document.querySelectorAll(".lead-inp").forEach(function(inp){
+    if(!LEADS[inp.dataset.s]) LEADS[inp.dataset.s]=[];
+    LEADS[inp.dataset.s][parseInt(inp.dataset.i)]=inp.value.trim();
+  });
+  render();
+  alert("✓ Leads saved!");
+}
+
+// ── INIT ──────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
